@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta property="fb:admins" content="789464270" />
+
+  <title>Growth Tribe - Europe’s first Growth Hacking Academy</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Growth Tribe is an Amsterdam based Growth Hacking Academy. We offer growth hacking workshops, train Growth Hackers and help companies create growth engines"/>
+
+  <link rel="canonical" href="http://growthtribe.io/" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Growth Tribe - Europe’s first Growth Hacking Academy" />
+  <meta property="og:description" content="Growth Tribe is an Amsterdam based Growth Hacking Academy. We offer growth hacking workshops, train Growth Hackers and help companies create growth engines"/>
+  <meta property="og:url" content="http://growthtribe.io/" />
+  <meta property="og:site_name" content="Growth Tribe" />
+  <meta property="article:publisher" content="https://www.facebook.com/GrowthTribeIO" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="Growth Tribe is an Amsterdam based Growth Hacking Academy. We offer growth hacking workshops, train Growth Hackers and help companies create growth engines"/>
+  <meta name="twitter:title" content="Growth Tribe - Europe’s first Growth Hacking Academy" />
+  <meta name="twitter:site" content="@GrowthTribe" />
+  <meta name="twitter:domain" content="Growth Tribe" />
+  <meta name="twitter:creator" content="@GrowthTribe" />
+  <meta name="google-site-verification" content="K1HWQxE_ABUwzGCrDYx9fLlYWcoC7HG4CdyQpjHtw5o" />
+  <meta name="google-site-verification" content="hEZSwee8PxXLrbvIMzBpW9dfWGJOToSD_ebr_aDX3uI" />
+  <link rel="alternate" type="application/rss+xml" title="Growth Tribe &raquo; Feed" href="http://growthtribe.io/feed/" />
+  <link rel="alternate" type="application/rss+xml" title="Growth Tribe &raquo; Comments Feed" href="http://growthtribe.io/comments/feed/"/>
+  <link rel="alternate" type="application/rss+xml" title="Growth Tribe &raquo; Growth Hacking Comments Feed" href="http://growthtribe.io/newpage/feed/"/>
+  <meta property="og:title" content="Growth Marketing Academy" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://growthtribe.io/" />
+  <meta property="og:site_name" content="Growth Tribe" />
+  <meta property="og:description" content="We’ve created the most solid Growth Hacking curriculum around to teach you" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <a href="/"><img class="img-fluid" width="200px" alt="Growth Hacking Academy Logo" src="https://growthtribe.nl/assets/rgb-growthtribe-horizontal-4e51e7bb72d150200cd039ee9c9cb4354ec2598dc3bd839fbcda47b90e9ba8a7.png"></a>
+      </div>
+      <div class="col-sm-6">
+        <h3 style="padding-top: 10px">Retention Dataset Generator</h3>
+      </div>
+    </div>
+
+
+    <hr>
+
+    <% if @notice %>
+      <div class="alert alert-success" role="alert">
+        <%= @notice %>
+      </div>
+    <% end %>
+
+    <div class="jumbotron">
+
+      <form method="post" action="/export" class="ui form">
+        <div class="form-group">
+          <div class="field">
+            <label>Enter your Mixpanel Project Token:</label>
+            <input type="text" class="form-control" name="api_key" />
+            <p><i class="fas fa-cog"></i> (settings) >  Project settings > Management > TOKEN <br> <i>Do not use the API_KEY..</i></p>
+
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Generate and Export dataset to Mixpanel</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
