@@ -2,19 +2,33 @@ require 'faker'
 require 'csv'
 require 'mixpanel-ruby'
 
-class Dataset
-  MIXPANEL_TOKEN = ''.freeze
-  attr_accessor :users
+#
+# class MyCustomError < StandardError
+#   ClientError = Class.new(self)
+#
+#   Unauthorized = Class.new(ClientError)
+# end
 
-  def initialize(size = 1000)
+
+class Dataset
+  attr_accessor :users
+  attr_accessor :logger
+  attr_reader :mixpanel_api_key
+
+  def initialize(mixpanel_api_key = nil, size = 1000, logger = Logger.new(STDOUT))
     @size = size
     @users = []
+    @mixpanel_api_key = mixpanel_api_key
+    @logger = logger
     populate_users
     add_purchase_behavior
   end
 
   def to_csv
-    CSV.open('retention-dataset.csv', 'w') do |csv|
+    dirname = File.expand_path(File.dirname(__FILE__))
+    filename = "#{ DateTime.now.strftime('%d-%m-%y-%H-%M-%S') }-retention-dataset.csv"
+
+    CSV.open(File.join(dirname , 'datasets', filename), 'w') do |csv|
       @users.each do |user|
         csv << user.csv_serialize
       end
@@ -23,9 +37,12 @@ class Dataset
   end
 
   def to_mixpanel
-    return puts 'Missing Mixpanel Token' if MIXPANEL_TOKEN.empty?
-    tracker = Mixpanel::Tracker.new(MIXPANEL_TOKEN)
-    @users.each do |user|
+    # TODO Throw Exception
+    return if mixpanel_api_key&.empty?
+
+
+    tracker = Mixpanel::Tracker.new(mixpanel_api_key)
+    users.each do |user|
       tracker.people.set(user.id,
         '$first_name':         user.first_name,
         '$last_name':          user.last_name,
@@ -46,7 +63,6 @@ class Dataset
         'november_purchases':  user.november_purchases,
         'december_purchases':  user.december_purchases,
         'first_purchase_date': user.date_of_first_purchase)
-      puts "User #{user.id} added to Mixpanel"
     end
   end
 
@@ -218,4 +234,6 @@ class Countries
   end
 end
 
-Dataset.new.to_csv
+if __FILE__== $0
+  Dataset.new.to_csv
+end
