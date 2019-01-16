@@ -110,7 +110,7 @@ class Dataset
 
   def resurrected_user_purchase_behavior(user)
     month_number        = Date.today.month
-    random_month_number = rand(2..month_number - 1)
+    random_month_number = (month_number == 1 ? rand(5..11) : rand(2..month_number - 1))
     random_past_month   = Date.today.prev_month(random_month_number)
     random_past_month_in_words = random_past_month.strftime('%B').downcase
 
