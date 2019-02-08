@@ -112,7 +112,7 @@ class Dataset
     month_number        = Date.today.month
     random_month        = random_month_number(month_number)
 
-    random_past_month   = Date.today.prev_month(random_month_number)
+    random_past_month   = Date.today.prev_month(random_month)
     random_past_month_in_words = random_past_month.strftime('%B').downcase
 
     user.send("#{random_past_month_in_words}_purchases=", 1)
