@@ -110,12 +110,25 @@ class Dataset
 
   def resurrected_user_purchase_behavior(user)
     month_number        = Date.today.month
-    random_month_number = (month_number == 1 ? rand(5..11) : rand(2..month_number - 1))
+    random_month        = random_month_number(month_number)
+
     random_past_month   = Date.today.prev_month(random_month_number)
     random_past_month_in_words = random_past_month.strftime('%B').downcase
 
     user.send("#{random_past_month_in_words}_purchases=", 1)
     user.date_of_first_purchase = random_past_month.strftime('%Y-%m-02T%T')
+  end
+
+  def random_month_number(given_month)
+    if given_month == 1
+      rand(5..11)
+    elsif given_month == 2
+      rand(3..12)
+    elsif given_month == 3
+      rand(4..12)
+    else
+      rand(1..(given_month - 2))
+    end
   end
 
   def churned_user_purchase_behavior(user)
